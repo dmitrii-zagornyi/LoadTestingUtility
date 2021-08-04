@@ -73,10 +73,8 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\libcurl-d.dll" "$(MSBuildProjectDirectory)\..\$(IntDir)libcurl-d.dll"
-copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\libcurl-d.pdb" "$(MSBuildProjectDirectory)\..\$(IntDir)libcurl-d.pdb"
-copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\zlibd.pdb" "$(MSBuildProjectDirectory)\..\$(IntDir)zlibd.pdb"
-copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\zlibd1.dll" "$(MSBuildProjectDirectory)\..\$(IntDir)zlibd1.dll"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -107,14 +105,48 @@ copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\zlibd1.dll" "$(MSBuildProject
       </Command>
     </PreLinkEvent>
     <PreBuildEvent>
-      <Command>copy /Y "$(MSBuildProjectDirectory)\Curl\bin\libcurl.dll" "$(MSBuildProjectDirectory)\..\$(IntDir)libcurl.dll"
-copy /Y "$(MSBuildProjectDirectory)\Curl\bin\libcurl.pdb" "$(MSBuildProjectDirectory)\..\$(IntDir)libcurl.pdb"
-copy /Y "$(MSBuildProjectDirectory)\Curl\bin\zlib.pdb" "$(MSBuildProjectDirectory)\..\$(IntDir)zlib.pdb"
-copy /Y "$(MSBuildProjectDirectory)\Curl\bin\zlib1.dll" "$(MSBuildProjectDirectory)\..\$(IntDir)zlib1.dll"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LoadTestingUtility.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Curl\bin\libcurl.dll">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Curl\bin\libcurl.pdb">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Curl\bin\zlib.pdb">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Curl\bin\zlib1.dll">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Curl\include\curl\curl.h" />
+    <ClInclude Include="Curl\include\curl\curlver.h" />
+    <ClInclude Include="Curl\include\curl\easy.h" />
+    <ClInclude Include="Curl\include\curl\mprintf.h" />
+    <ClInclude Include="Curl\include\curl\multi.h" />
+    <ClInclude Include="Curl\include\curl\options.h" />
+    <ClInclude Include="Curl\include\curl\stdcheaders.h" />
+    <ClInclude Include="Curl\include\curl\system.h" />
+    <ClInclude Include="Curl\include\curl\typecheck-gcc.h" />
+    <ClInclude Include="Curl\include\curl\urlapi.h" />
+    <ClInclude Include="Curl\include\zconf.h" />
+    <ClInclude Include="Curl\include\zlib.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Curl\lib\libcurl.lib">
+      <DeploymentContent>true</DeploymentContent>
+    </Library>
+    <Library Include="Curl\lib\zlib.lib">
+      <DeploymentContent>true</DeploymentContent>
+    </Library>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
