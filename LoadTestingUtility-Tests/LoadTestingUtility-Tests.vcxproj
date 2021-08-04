@@ -50,11 +50,13 @@
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(MSBuildProjectDirectory)\..\LoadTestingUtility\Curl\debug\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <IncludePath>$(MSBuildProjectDirectory)\..\LoadTestingUtility\Curl\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <OutDir>$(MSBuildProjectDirectory)\..\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(MSBuildProjectDirectory)\..\LoadTestingUtility\Curl\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>$(MSBuildProjectDirectory)\..\LoadTestingUtility\Curl\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <OutDir>$(MSBuildProjectDirectory)\..\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
