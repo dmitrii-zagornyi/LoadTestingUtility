@@ -38,4 +38,4 @@ jobs:
         run: msbuild LoadTestingUtility-Tests\LoadTestingUtility-Tests.vcxproj /property:Configuration=Release /property:Platform=x64
 
       - name: run tests
-        run: vstest.console.exe x64\Release\LoadTestingUtility-Tests.dll
+        run: vstest.console.exe LoadTestingUtility-Tests\x64\Release\LoadTestingUtility-Tests.dll
