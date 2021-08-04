@@ -339,4 +339,6 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-!LoadTestingUtility/Curl/*
+LoadTestingUtility/Curl/*
+LoadTestingUtility-Tests/Curl/*
+!Curl/*

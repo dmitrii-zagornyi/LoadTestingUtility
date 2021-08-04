@@ -45,8 +45,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(MSBuildProjectDirectory)\Curl\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(MSBuildProjectDirectory)\Curl\debug\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(MSBuildProjectDirectory)\..\Curl\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(MSBuildProjectDirectory)\..\Curl\debug\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -69,12 +69,13 @@
       <AdditionalDependencies>libcurl-d.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy /Y "$(MSBuildProjectDirectory)\..\Curl\debug\bin\libcurl-d.dll" "$(OutDir)libcurl-d.dll"
+copy /Y "$(MSBuildProjectDirectory)\..\Curl\debug\bin\libcurl-d.pdb" "$(OutDir)libcurl-d.pdb"
+copy /Y "$(MSBuildProjectDirectory)\..\Curl\debug\bin\zlibd.pdb" "$(OutDir)zlibd.pdb"
+copy /Y "$(MSBuildProjectDirectory)\..\Curl\debug\bin\zlibd1.dll" "$(OutDir)zlibd1.dll"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy "$(MSBuildProjectDirectory)\..\Curl" "$(MSBuildProjectDirectory)\Curl" /Y /S /E /I</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -97,44 +98,21 @@
       <AdditionalDependencies>libcurl.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy /Y "$(MSBuildProjectDirectory)\..\Curl\bin\libcurl.dll" "$(OutDir)libcurl.dll"
+copy /Y "$(MSBuildProjectDirectory)\..\Curl\bin\libcurl.pdb" "$(OutDir)libcurl.pdb"
+copy /Y "$(MSBuildProjectDirectory)\..\Curl\bin\zlib.pdb" "$(OutDir)zlib.pdb"
+copy /Y "$(MSBuildProjectDirectory)\..\Curl\bin\zlib1.dll" "$(OutDir)zlib1.dll"</Command>
     </PostBuildEvent>
     <PreLinkEvent>
       <Command>
       </Command>
     </PreLinkEvent>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy "$(MSBuildProjectDirectory)\..\Curl" "$(MSBuildProjectDirectory)\Curl" /Y /S /E /I</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LoadTestingUtility.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Curl\include\curl\curl.h" />
-    <ClInclude Include="Curl\include\curl\curlver.h" />
-    <ClInclude Include="Curl\include\curl\easy.h" />
-    <ClInclude Include="Curl\include\curl\mprintf.h" />
-    <ClInclude Include="Curl\include\curl\multi.h" />
-    <ClInclude Include="Curl\include\curl\options.h" />
-    <ClInclude Include="Curl\include\curl\stdcheaders.h" />
-    <ClInclude Include="Curl\include\curl\system.h" />
-    <ClInclude Include="Curl\include\curl\typecheck-gcc.h" />
-    <ClInclude Include="Curl\include\curl\urlapi.h" />
-    <ClInclude Include="Curl\include\zconf.h" />
-    <ClInclude Include="Curl\include\zlib.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Curl\bin\libcurl.dll" />
-    <None Include="Curl\bin\libcurl.pdb" />
-    <None Include="Curl\bin\zlib.pdb" />
-    <None Include="Curl\bin\zlib1.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="Curl\lib\libcurl.lib" />
-    <Library Include="Curl\lib\zlib.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
