@@ -45,9 +45,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(MSBuildProjectDirectory)\Curl\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(MSBuildProjectDirectory)\Curl\debug\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(MSBuildProjectDirectory)\Curl\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(MSBuildProjectDirectory)\Curl\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -55,21 +59,25 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Curl\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Curl\debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libcurl-d.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)Curl\debug\bin\libcurl-d.dll" "$(TargetDir)libcurl-d.dll"
-copy /Y "$(SolutionDir)Curl\debug\bin\libcurl-d.pdb" "$(TargetDir)libcurl-d.pdb"
-copy /Y "$(SolutionDir)Curl\debug\bin\zlibd.pdb" "$(TargetDir)zlibd.pdb"
-copy /Y "$(SolutionDir)Curl\debug\bin\zlibd1.dll" "$(TargetDir)zlibd1.dll"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\libcurl-d.dll" "$(TargetDir)libcurl-d.dll"
+copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\libcurl-d.pdb" "$(TargetDir)libcurl-d.pdb"
+copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\zlibd.pdb" "$(TargetDir)zlibd.pdb"
+copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\zlibd1.dll" "$(TargetDir)zlibd1.dll"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -79,7 +87,8 @@ copy /Y "$(SolutionDir)Curl\debug\bin\zlibd1.dll" "$(TargetDir)zlibd1.dll"</Comm
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Curl\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -87,15 +96,22 @@ copy /Y "$(SolutionDir)Curl\debug\bin\zlibd1.dll" "$(TargetDir)zlibd1.dll"</Comm
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\Curl\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>libcurl.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)Curl\bin\libcurl.dll" "$(TargetDir)libcurl.dll"
-copy /Y "$(SolutionDir)Curl\bin\libcurl.pdb" "$(TargetDir)libcurl.pdb"
-copy /Y "$(SolutionDir)Curl\bin\zlib.pdb" "$(TargetDir)zlib.pdb"
-copy /Y "$(SolutionDir)Curl\bin\zlib1.dll" "$(TargetDir)zlib1.dll"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <PreBuildEvent>
+      <Command>copy /Y "$(MSBuildProjectDirectory)\Curl\bin\libcurl.dll" "$(TargetDir)libcurl.dll"
+copy /Y "$(MSBuildProjectDirectory)\Curl\bin\libcurl.pdb" "$(TargetDir)libcurl.pdb"
+copy /Y "$(MSBuildProjectDirectory)\Curl\bin\zlib.pdb" "$(TargetDir)zlib.pdb"
+copy /Y "$(MSBuildProjectDirectory)\Curl\bin\zlib1.dll" "$(TargetDir)zlib1.dll"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LoadTestingUtility.cpp" />
