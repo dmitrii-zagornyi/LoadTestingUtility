@@ -113,20 +113,6 @@
     <ClCompile Include="LoadTestingUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Curl\bin\libcurl.dll">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="Curl\bin\libcurl.pdb">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="Curl\bin\zlib.pdb">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="Curl\bin\zlib1.dll">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Curl\include\curl\curl.h" />
     <ClInclude Include="Curl\include\curl\curlver.h" />
     <ClInclude Include="Curl\include\curl\easy.h" />
@@ -141,12 +127,14 @@
     <ClInclude Include="Curl\include\zlib.h" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Curl\lib\libcurl.lib">
-      <DeploymentContent>true</DeploymentContent>
-    </Library>
-    <Library Include="Curl\lib\zlib.lib">
-      <DeploymentContent>true</DeploymentContent>
-    </Library>
+    <None Include="Curl\bin\libcurl.dll" />
+    <None Include="Curl\bin\libcurl.pdb" />
+    <None Include="Curl\bin\zlib.pdb" />
+    <None Include="Curl\bin\zlib1.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Curl\lib\libcurl.lib" />
+    <Library Include="Curl\lib\zlib.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

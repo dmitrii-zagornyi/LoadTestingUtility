@@ -20,20 +20,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Curl\bin\libcurl.dll">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Curl\bin\libcurl.pdb">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Curl\bin\zlib.pdb">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Curl\bin\zlib1.dll">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="Curl\include\zlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Curl\include\curl\curl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -67,9 +56,20 @@
     <ClInclude Include="Curl\include\zconf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Curl\include\zlib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Curl\bin\zlib1.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Curl\bin\libcurl.dll">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Curl\bin\libcurl.pdb">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Curl\bin\zlib.pdb">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="Curl\lib\libcurl.lib">
