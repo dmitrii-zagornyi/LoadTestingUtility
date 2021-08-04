@@ -27,17 +27,15 @@ jobs:
 
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v1
-      
+
       - name: setup-vstest
         uses: darenm/Setup-VSTest@v1
 
       - name: build
-        env:
-          
         run: msbuild LoadTestingUtility\LoadTestingUtility.vcxproj /property:Configuration=Release /property:Platform=x64
-              
+
       - name: build tests
         run: msbuild LoadTestingUtility-Tests\LoadTestingUtility-Tests.vcxproj /property:Configuration=Release /property:Platform=x64
-      
+
       - name: run tests
         run: vstest.console.exe LoadTestingUtility-Tests\Release\LoadTestingUtility-Tests.dll
