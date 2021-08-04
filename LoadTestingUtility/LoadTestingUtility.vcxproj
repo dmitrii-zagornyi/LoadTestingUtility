@@ -73,10 +73,10 @@
       </Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\libcurl-d.dll" "$(TargetDir)libcurl-d.dll"
-copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\libcurl-d.pdb" "$(TargetDir)libcurl-d.pdb"
-copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\zlibd.pdb" "$(TargetDir)zlibd.pdb"
-copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\zlibd1.dll" "$(TargetDir)zlibd1.dll"</Command>
+      <Command>copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\libcurl-d.dll" "$(MSBuildProjectDirectory)\..\$(IntDir)libcurl-d.dll"
+copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\libcurl-d.pdb" "$(MSBuildProjectDirectory)\..\$(IntDir)libcurl-d.pdb"
+copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\zlibd.pdb" "$(MSBuildProjectDirectory)\..\$(IntDir)zlibd.pdb"
+copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\zlibd1.dll" "$(MSBuildProjectDirectory)\..\$(IntDir)zlibd1.dll"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -107,10 +107,10 @@ copy /Y "$(MSBuildProjectDirectory)\Curl\debug\bin\zlibd1.dll" "$(TargetDir)zlib
       </Command>
     </PreLinkEvent>
     <PreBuildEvent>
-      <Command>copy /Y "$(MSBuildProjectDirectory)\Curl\bin\libcurl.dll" "$(TargetDir)libcurl.dll"
-copy /Y "$(MSBuildProjectDirectory)\Curl\bin\libcurl.pdb" "$(TargetDir)libcurl.pdb"
-copy /Y "$(MSBuildProjectDirectory)\Curl\bin\zlib.pdb" "$(TargetDir)zlib.pdb"
-copy /Y "$(MSBuildProjectDirectory)\Curl\bin\zlib1.dll" "$(TargetDir)zlib1.dll"</Command>
+      <Command>copy /Y "$(MSBuildProjectDirectory)\Curl\bin\libcurl.dll" "$(MSBuildProjectDirectory)\..\$(IntDir)libcurl.dll"
+copy /Y "$(MSBuildProjectDirectory)\Curl\bin\libcurl.pdb" "$(MSBuildProjectDirectory)\..\$(IntDir)libcurl.pdb"
+copy /Y "$(MSBuildProjectDirectory)\Curl\bin\zlib.pdb" "$(MSBuildProjectDirectory)\..\$(IntDir)zlib.pdb"
+copy /Y "$(MSBuildProjectDirectory)\Curl\bin\zlib1.dll" "$(MSBuildProjectDirectory)\..\$(IntDir)zlib1.dll"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
