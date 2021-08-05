@@ -58,3 +58,6 @@ jobs:
         with:
           url: 'https://www.sberbank.ru'
           requestsCount: '10'
+          
+      - name: docker-build-from-file
+        run: docker build - < Dockerfile
