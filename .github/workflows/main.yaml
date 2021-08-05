@@ -60,4 +60,4 @@ jobs:
       #    requestsCount: '10'
           
       - name: docker-build-from-file
-        run: docker build -t LoadTestingUtility -v $(pwd):/ $(pwd) -f Dockerfile
+        run: docker build -t load-testing-utility -v $(pwd):/ $(pwd) -f Dockerfile
