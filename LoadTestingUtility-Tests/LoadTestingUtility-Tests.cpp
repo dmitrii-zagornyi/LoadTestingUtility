@@ -2,6 +2,7 @@
 #include "CppUnitTest.h"
 
 #include "../LoadTestingUtility/LoadTestingUtility.cpp"
+#include <charconv>
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -15,15 +16,6 @@ namespace LoadTestingUtilityTests
 		string urlValid = "https://www.sberbank.ru";
 		string urlInvalid = "https://www.google.com1234";
 	public:
-		TEST_METHOD(CheckStatus_Ok)
-		{
-			::CheckStatus(CURLE_OK);
-		}
-		TEST_METHOD(CheckStatus_Fail)
-		{
-			auto func = [this] { ::CheckStatus(CURLE_UNSUPPORTED_PROTOCOL); };
-			Assert::ExpectException<std::exception>(func);
-		}
 		TEST_METHOD(SendGetRequest_Default)
 		{
 			CURL* curl = curl_easy_init();
@@ -58,18 +50,29 @@ namespace LoadTestingUtilityTests
 		}
 		TEST_METHOD(SendGetRequest_IncorrectUrl)
 		{
-			auto func = [this] {
-				CURL* curl = curl_easy_init();
-				map<long, vector<double>> response;
-				SendGetRequest(curl, urlInvalid, response); };
-			Assert::ExpectException<std::exception>(func);
+			CURL* curl = curl_easy_init();
+
+			map<long, vector<double>> response;
+
+			SendGetRequest(curl, urlInvalid, response);
+
+			Assert::IsTrue(response.size() == 1);
+			Assert::IsTrue(response[response.begin()->first].size() == 1);
+			Assert::IsTrue(response.begin()->first < 0);
+			Assert::IsTrue(response[response.begin()->first][0] == 0.0);
+
+			curl_easy_cleanup(curl);
 		}
 		TEST_METHOD(SendGetRequest_CurlNotInit)
 		{
-			auto func = [this] {
-				map<long, vector<double>> response;
-				SendGetRequest(NULL, urlValid, response); };
-			Assert::ExpectException<std::exception>(func);
+			map<long, vector<double>> response;
+
+			SendGetRequest(NULL, urlInvalid, response);
+
+			Assert::IsTrue(response.size() == 1);
+			Assert::IsTrue(response[response.begin()->first].size() == 1);
+			Assert::IsTrue(response.begin()->first < 0);
+			Assert::IsTrue(response[response.begin()->first][0] == 0.0);
 		}
 		TEST_METHOD(SendBatchGetRequest_Default)
 		{
@@ -181,6 +184,45 @@ namespace LoadTestingUtilityTests
 			{
 				Assert::IsTrue(response[response.begin()->first][i] < 2.0);
 			}
+		}
+	};
+	TEST_CLASS(LoadTestingUtilityTestsUI)
+	{
+	private:
+		string urlValid = "https://www.sberbank.ru";
+	public:
+		TEST_METHOD(CheckMain_NoArgs)
+		{
+			vector<const char*> argv;
+			argv.push_back("LoadTestingUtility.exe");
+
+			int result = main(int(argv.size()), argv.data());
+
+			Assert::AreEqual(result, 1);
+		}
+		TEST_METHOD(CheckMain_FourArgs)
+		{
+			vector<const char*> argv;
+			argv.push_back("LoadTestingUtility.exe");
+			argv.push_back("LoadTestingUtility.exe");
+			argv.push_back("LoadTestingUtility.exe");
+			argv.push_back("LoadTestingUtility.exe");
+
+			int result = main(int(argv.size()), argv.data());
+
+			Assert::AreEqual(result, 1);
+		}
+		TEST_METHOD(CheckMain_ValidArgs)
+		{
+			vector<const char*> argv;
+			argv.push_back("LoadTestingUtility.exe");
+			argv.push_back(urlValid.c_str());
+			string number = to_string(10);
+			argv.push_back(number.c_str());
+
+			int result = main(int(argv.size()), argv.data());
+
+			Assert::AreEqual(result, 0);
 		}
 	};
 }
