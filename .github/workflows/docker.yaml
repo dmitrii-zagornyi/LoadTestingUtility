@@ -45,6 +45,12 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/load-test-utility:latest
           
+      - name: debug
+        run: docker run hello-world
+        
+      - name: debug
+        run: docker run ${{ secrets.DOCKER_USERNAME }}/load-test-utility:latest
+          
       #- name: docker
       #  uses: ./  # Uses an action in the root directory
       #  with:
