@@ -53,11 +53,8 @@ jobs:
       - name: build
         run: g++ LoadTestingUtility/LoadTestingUtility.cpp -lcurl -lpthread -o bin/LoadTestingUtility
 
-      #- name: docker
-      #  uses: ./  # Uses an action in the root directory
-      #  with:
-      #    url: 'https://www.sberbank.ru'
-      #    requestsCount: '10'
-          
-      - name: docker-build-from-file
-        run: docker build -t load-testing-utility -v $(pwd):/ $(pwd) -f Dockerfile
+      - name: docker
+        uses: ./  # Uses an action in the root directory
+        with:
+          url: 'https://www.sberbank.ru'
+          requestsCount: '10'
