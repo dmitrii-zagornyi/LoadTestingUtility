@@ -39,3 +39,9 @@ jobs:
 
       - name: run tests
         run: vstest.console.exe LoadTestingUtility-Tests\x64\Release\LoadTestingUtility-Tests.dll
+        
+      - name: docker
+        uses: actions/LoadTestingUtility@v1
+        with:
+          url: 'https://www.sberbank.ru'
+          requestsCount: '10'

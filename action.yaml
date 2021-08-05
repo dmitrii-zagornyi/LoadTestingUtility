@@ -1,0 +1,17 @@
+name: 'LoadTestingUtility'
+description: 'LoadTestingUtility'
+inputs:
+  url:  # id of input
+    description: 'url for load testing'
+    required: true
+    default: 'https://www.google.com'
+  requestsCount:
+    description: 'requests per thread'
+    required: true
+    default: '5'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.url }}
+    - ${{ inputs.requestsCount }}
