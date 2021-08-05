@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build windows:
+  build-windows:
     # The type of runner that the job will run on
     runs-on: windows-latest
 
@@ -38,7 +38,7 @@ jobs:
       - name: build tests
         run: msbuild LoadTestingUtility-Tests\LoadTestingUtility-Tests.vcxproj /property:Configuration=Release /property:Platform=x64
         
-  build linux:
+  build-linux:
     runs-on: ubuntu-latest
     steps:
       - name: checkout-repo
