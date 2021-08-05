@@ -37,11 +37,13 @@ jobs:
       - name: build tests
         run: msbuild LoadTestingUtility-Tests\LoadTestingUtility-Tests.vcxproj /property:Configuration=Release /property:Platform=x64
 
-      - name: run tests
-        run: vstest.console.exe LoadTestingUtility-Tests\x64\Release\LoadTestingUtility-Tests.dll
-        
-      - name: docker
-        uses: ./ # Uses an action in the root directory
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
         with:
-          url: 'https://www.sberbank.ru'
-          requestsCount: '10'
+          context: ./
+          file: ./Dockerfile
