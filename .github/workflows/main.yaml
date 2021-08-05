@@ -37,24 +37,3 @@ jobs:
 
       - name: build tests
         run: msbuild LoadTestingUtility-Tests\LoadTestingUtility-Tests.vcxproj /property:Configuration=Release /property:Platform=x64
-        
-  build-linux:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout-repo
-        uses: actions/checkout@v2
-        
-      - name: install-libcurl
-        run: sudo apt-get install -y libcurl4-openssl-dev
-        
-      - name: create-build-folder
-        run: mkdir bin
-        
-      - name: build
-        run: g++ LoadTestingUtility/LoadTestingUtility.cpp -lcurl -lpthread -o bin/LoadTestingUtility
-
-      - name: docker
-        uses: ./  # Uses an action in the root directory
-        with:
-          url: 'https://www.sberbank.ru'
-          requestsCount: '10'
