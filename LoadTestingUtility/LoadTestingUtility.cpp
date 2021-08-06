@@ -102,7 +102,16 @@ void printStatistics(const map<long, vector<double>>& responses)
     size_t requestsCount = 0;
     for (auto it = responses.begin(); it != responses.end(); it++)
     {
-        cout << it->first << " - " << it->second.size() << " requests" << endl;
+        string requestStatus;
+        if (it->first < 0)
+        {
+            requestStatus = curl_easy_strerror(CURLcode(it->first * (-1)));
+        }
+        else
+        {
+            requestStatus = to_string(it->first);
+        }
+        cout << requestStatus << " - " << it->second.size() << " requests" << endl;
         for (unsigned int number = 0; number < it->second.size(); number++)
         {
             totalTime += it->second[number];
