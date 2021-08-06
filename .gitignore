@@ -341,4 +341,5 @@ healthchecksdb
 
 LoadTestingUtility/Curl/*
 LoadTestingUtility-Tests/Curl/*
+!Curl/debug/*
 !Curl/*
